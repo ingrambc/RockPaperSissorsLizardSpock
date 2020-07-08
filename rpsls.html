@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Rock, Paper, Sissors</h1>
+
+  <script>
+    var rps = ["rock", "paper", "sissors", "lizard", "spock"];
+    const numGames = 10;
+    var playAgain = true;
+    
+    while(playAgain === true){
+      var pScore = 0;
+      var cScore = 0;
+
+      //each game for loop
+      for (let i = 0; i < numGames; i++) {
+        //generate computer's choice
+        var compChoice = Math.floor(Math.random() * rps.length);
+
+        // get player's choice
+        var pStrChoice = prompt("choose rock, paper, sissors, lizard, or spock").toLowerCase();
+
+        //check players coice is valid
+        while (rps.indexOf(pStrChoice) === -1) {
+          var pStrChoice = prompt("Try Again, choose rock, paper, sissors, lizard, or spock").toLocaleLowerCase();
+        }
+
+        // set player choice to index of choice
+        var playerChoice = rps.indexOf(pStrChoice);
+
+
+        // results of the choices
+        console.log("You chose " + pStrChoice + ", I chose " + rps[compChoice]);
+
+        if(playerChoice === compChoice){
+          console.log("we tied!");
+        }else if(playerChoice === 0 && (compChoice === 1 || compChoice === 4)){
+          console.log("You beat me.  You get a point");
+          pScore++;
+        }else if(playerChoice === 1 && (compChoice === 2 || compChoice === 3)){
+          console.log("You beat me.  You get a point");
+          pScore++;
+        }else if(playerChoice === 2 && (compChoice === 0 || compChoice === 3)){
+          console.log("You beat me.  You get a point");
+          pScore++;
+        }else if(playerChoice === 3 && (compChoice === 0 || compChoice === 4)){
+          console.log("You beat me.  You get a point");
+          pScore++;
+        }else if(playerChoice === 4 && (compChoice === 1 || compChoice === 2)){
+          console.log("You beat me.  You get a point");
+          pScore++;
+        }else{
+          console.log("I beat you.  I get a point");
+          cScore++;
+        }      
+      }
+
+
+      //output results
+      console.log("Your score " + pScore + ", my score " + cScore);
+
+      if(pScore > cScore){
+        console.log("You beat me, refresh to play again");
+      }else if(pScore < cScore){
+        console.log("I beat you, refresh to play again");
+      }else{
+        console.log("We tied, refresh to play again");
+      }
+
+      //promp to play again
+      playAgain = confirm("do you want to play again?");
+    }
+
+  </script>
+  
+</body>
+</html>
